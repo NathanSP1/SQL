@@ -1,0 +1,48 @@
+//Displays Distinct neighborhoods
+SELECT DISTINCT neighborhood FROM nomnom;
+
+//Displays the DISTINCT cuisine types for the neighborhood 
+SELECT DISTINCT neighborhood, cuisine FROM nomnom;
+
+//Displays the wanted cuisine type from the table and includes all of the columns that has relation to that cuisine type
+SELECT * FROM nomnom 
+WHERE cuisine = 'Chinese';
+
+//Displays the Resturants that have a rating of 4 or more from the table
+SELECT * FROM nomnom 
+WHERE cuisine > 4;
+
+//Displays the cuisine Italian that has a $$$ price from the table
+SELECT * FROM nomnom 
+WHERE cuisine = 'Italian'
+  AND price LIKE '$$$';
+  
+//Displays a name of a resturant that contains a key word 'meatball' from the table
+SELECT * FROM nomnom 
+WHERE name LIKE '%meatball%';
+
+//Displays resturants that are located in the close by towns/spots from the table
+SELECT * FROM nomnom 
+WHERE neighborhood = 'Donwntown'
+  OR  neighborhood = 'Midtown'
+  OR  neighborhood = 'Chinatown';
+  
+//Displays health grades ofm resturants that contain empty values from the table
+SELECT * FROM nomnom 
+WHERE health IS NULL;
+
+//Displays the top 10 resturants based on review 
+SELECT * FROM nomnom
+ORDER BY review DESC
+LIMIT 10;
+
+//Displays a new rating column/and system based on review score from the table 
+ELECT name, 
+  case
+    WHEN review > 4.5 THEN 'Extraordinary'
+    WHEN review > 4 THEN 'Excellent'
+    WHEN review > 3 THEN 'Good'
+    WHEN review > 2 THEN 'Fair'
+      Else 'poor'
+  END AS 'rating'
+FROM nomnom;
